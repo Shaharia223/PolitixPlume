@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Work - PolitixPlume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Main Content Styles */
+        .main-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            min-height: calc(100vh - 300px);
+        }
+
+        .submission-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-upload-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            border: 2px dashed #4CAF50;
+            border-radius: 10px;
+            background: rgba(76, 175, 80, 0.05);
+            color: #4CAF50;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover .file-upload-label {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .response {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #c62828;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar Section -->
+    <div class="top-bar">
+        <div class="auth-section">
+            <a href="Submission.html" class="Art-submission">Article Submission</a>
+            <a href="submissionguideline.html" class="Art-submission-g">Submission Guideline</a>
+        </div>
+        <div class="social-donate">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61574224911717"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://x.com/plumePolitix"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+            <a href="#" class="donate-btn">Donate</a>
+            <a href="#" class="writer-btn">Writer</a>
+        </div>
+    </div>
+
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo">
+            <h1><a href='../home.html'>Politix<span>Plume</span></a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Bangladesh Politics</a></li>
+                <li><a href="#">Books Review</a></li>
+                <li><a href="#">Political Science Academia</a></li>
+                <li><a href="#">International Politics</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="submission-container">
+            <div class="page-title">
+                <h1>Submit Your Work</h1>
+                <p>Share your political insights and contribute to meaningful discourse. We welcome well-researched articles involving political science.</p>
+            </div>
+            
+            <form id="alt-form">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="abstract"><i class="fas fa-file-text"></i> Abstract</label>
+                    <textarea id="abstract" name="abstract" rows="6" placeholder="Provide a brief abstract or summary of your article (optional)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="article_file"><i class="fas fa-upload"></i> Upload Article</label>
+                    <div class="file-upload">
+                        <input type="file" id="article_file" class="file-upload-input" accept=".docx">
+                        <div class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Click to upload your .docx file</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" id="submit-btn" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Article
+                </button>
+            </form>
+            
+            <div id="response" class="response"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About PolitixPlume</h3>
+                <p class="about-text">Our goal is to foster a thriving political culture in Bangladesh while making meaningful contributions to the global field of political science academia. Founded in 2025, we strive to be a reliable source of political insight and analysis for readers interested in South Asian and global politics.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-details">
+                    <div>
+                        <span class="contact-icon">📍</span>
+                        <p>Dhaka, Bangladesh</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">📧</span>
+                        <p>politixplume@gmail.com</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">📞</span>
+                        <p>+880 1521739684 (whatsapp)</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">⏰</span>
+                        <p>Sunday to Friday: 9 AM - 8 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 PolitixPlume. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // REPLACE WITH YOUR ACTUAL SCRIPT URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmV09jXnlII5n0nDx4HunRVAerL76cB5C724yr2VMXxWEmrzih_OCZIy2Lrqqep0j4/exec';
+        
+        const form = document.getElementById('alt-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const response = document.getElementById('response');
+        const fileInput = document.getElementById('article_file');
+        
+        // Update file upload label when file is selected
+        fileInput.addEventListener('change', function() {
+            const label = document.querySelector('.file-upload-label span');
+            if (this.files[0]) {
+                label.textContent = `Selected: ${this.files[0].name}`;
+            } else {
+                label.textContent = 'Click to upload your .docx file';
+            }
+        });
+        
+        // Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    // Remove the data:application/...;base64, prefix
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.onerror = error => reject(error);
+            });
+        }
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            response.style.display = 'none';
+            
+            try {
+                // Prepare form data
+                const formData = new FormData();
+                formData.append('name', document.getElementById('name').value);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('abstract', document.getElementById('abstract').value);
+                
+                // Handle file upload
+                const file = fileInput.files[0];
+                if (file) {
+                    console.log('Converting file to base64...');
+                    const base64Data = await fileToBase64(file);
+                    formData.append('file_data', base64Data);
+                    formData.append('file_name', file.name);
+                    formData.append('file_type', file.type);
+                    console.log('File converted, size:', base64Data.length);
+                }
+                
+                console.log('Sending request...');
+                const fetchResponse = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await fetchResponse.json();
+                console.log('Response:', data);
+                
+                if (data.result === 'success') {
+                    response.innerHTML = '<i class="fas fa-check-circle"></i> Success! Your article has been uploaded successfully. We will review it and get back to you soon.';
+                    response.className = 'response success';
+                    form.reset();
+                    document.querySelector('.file-upload-label span').textContent = 'Click to upload your .docx file';
+                } else {
+                    response.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error: ' + (data.error || 'Unknown error occurred. Please try again.');
+                    response.className = 'response error';
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                response.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error: ' + error.message;
+                response.className = 'response error';
+            }
+            
+            response.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Article';
+        });
+    </script>
+</body>
+</html>

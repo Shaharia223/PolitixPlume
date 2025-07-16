@@ -1,0 +1,144 @@
+/*body*/
+body {
+    background-color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+header .social-links a,
+header .auth-options a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+header .social-links a:hover,
+header .auth-options a:hover{
+margin: auto;
+}
+section.brand{
+    background-color: lightgrey;
+    padding: 20px;
+}
+section.brand::before {
+    background-image: url(nurhossain.webp);
+    background-size: cover;
+    background-position: center;
+    content: "";
+    filter: blur(5px);
+    height: 80%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+section.brand a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px 0;
+}
+main {
+    padding: 20px;
+}
+
+main section {
+    margin-bottom: 20px;
+}
+/*footer section*/
+footer {
+    background-color: #333;
+    box-sizing: border-box;
+    bottom: 0;
+    color: #fff;
+    height: 80%;
+    padding: 40px;
+    width: 100%;
+}
+.footer-row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+.footer-column {
+    flex: 1;
+    margin-left: auto;
+    padding: 20px;
+}
+
+.copyright {
+    margin-top: 20px;
+    text-align: center;  
+}
+
+/* Sign-In Form Styling */
+form {
+    background-color: rgba(238, 255, 0, 0.607);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+}
+
+form button {
+    background-color: #333;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;  
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+/*forsubmissionguidelinepage*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+.paragraph-section {
+    color: black;
+    font-size: 18px; 
+    padding: 20px;
+    position: relative;
+    text-shadow: 1px 1px 2px black;
+}
+.paragraph-section ::before{
+    background-image: url(submission.png);
+    background-size: cover;
+    background-position: center;
+    content: "";
+    filter: blur(3px);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1; 
+}

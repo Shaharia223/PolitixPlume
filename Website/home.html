@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolitixPlume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Bar Section -->
+    <div class="top-bar">
+        <div class="auth-section">
+            <a href="Submission/Submission.html" class="Art-submission">Article Submission</a>
+            <a href="Submission/submissionguideline.html" class="Art-submission-g">Submission Guideline</a>
+        </div>
+        <div class="social-donate">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61574224911717"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://x.com/plumePolitix"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+            <a href="#" class="donate-btn">Donate</a>
+            <a href="#" class="writer-btn">Writer</a>
+        </div>
+    </div>
+
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo">
+            <h1><a href='home.html'>Politix<span>Plume</span></a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Bangladesh Politics</a></li>
+                <li><a href="#">Books Review</a></li>
+                <li><a href="#">Political Science Academia</a></li>
+                <li><a href="#">International Politics</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Bangladesh Politics Section -->
+    <div class="section-title">
+        <h2>Bangladesh Politics</h2>
+    </div>
+    <div class="articles-container">
+        <div class="slideshow">
+            <div class="slides" id="bangladesh-slides">
+                <div class="slide">
+                    <div class="article-grid">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Politics article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Current Affairs</div>
+                                <h3 class="article-title">The Changing Landscape of Bangladesh's Political System</h3>
+                                <p class="article-excerpt">An analysis of the recent shifts in Bangladesh's political climate and its implications for the future governance.</p>
+                                <div class="article-meta">
+                                    <span>By Ahmed Rahman</span>
+                                    <span>May 15, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Politics article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Analysis</div>
+                                <h3 class="article-title">Economic Policies and Their Political Implications</h3>
+                                <p class="article-excerpt">How recent economic decisions by the government are shaping the political discourse in Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Nusrat Jahan</span>
+                                    <span>May 12, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Politics article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Opinion</div>
+                                <h3 class="article-title">The Role of Youth in Shaping Bangladesh's Political Future</h3>
+                                <p class="article-excerpt">Exploring how the younger generation is becoming more involved in political activism and decision-making.</p>
+                                <div class="article-meta">
+                                    <span>By Rahul Khan</span>
+                                    <span>May 10, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="article-grid">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Politics article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">History</div>
+                                <h3 class="article-title">Bangladesh's Political Evolution: 50 Years After Independence</h3>
+                                <p class="article-excerpt">A retrospective look at how Bangladesh's political landscape has evolved since gaining independence.</p>
+                                <div class="article-meta">
+                                    <span>By Farah Ahmed</span>
+                                    <span>May 8, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Politics article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Interview</div>
+                                <h3 class="article-title">In Conversation with Leading Political Scientist Dr. Abul Hassan</h3>
+                                <p class="article-excerpt">Insights on the current political climate and predictions for upcoming elections in Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Samira Alam</span>
+                                    <span>May 5, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Politics article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Policy</div>
+                                <h3 class="article-title">Environmental Policies and Political Will in Bangladesh</h3>
+                                <p class="article-excerpt">Examining the intersection of environmental challenges and political decision-making in Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Tanvir Hossain</span>
+                                    <span>May 2, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow prev" onclick="moveSlide(-1, 'bangladesh-slides')">❮</div>
+            <div class="arrow next" onclick="moveSlide(1, 'bangladesh-slides')">❯</div>
+        </div>
+    </div>
+
+    <!-- Political Science Academia Section -->
+    <div class="section-title">
+        <h2>Political Science Academia</h2>
+    </div>
+    <div class="articles-container">
+        <div class="slideshow">
+            <div class="slides" id="academia-slides">
+                <div class="slide">
+                    <div class="article-grid">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Academia article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Research</div>
+                                <h3 class="article-title">Democratic Institutions in South Asia: A Comparative Study</h3>
+                                <p class="article-excerpt">An academic exploration of democratic structures across South Asian countries with a focus on Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Kamrul Islam</span>
+                                    <span>May 18, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Academia article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Theory</div>
+                                <h3 class="article-title">Post-Colonial Political Theory: Applications in Modern Bangladesh</h3>
+                                <p class="article-excerpt">Examining how post-colonial theory can help understand contemporary political dynamics in Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Prof. Sabina Yasmin</span>
+                                    <span>May 14, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Academia article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Education</div>
+                                <h3 class="article-title">Teaching Political Science in Bangladesh: Challenges and Opportunities</h3>
+                                <p class="article-excerpt">Insights into the state of political science education in Bangladeshi universities.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Abdul Mannan</span>
+                                    <span>May 11, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="article-grid">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Academia article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Research</div>
+                                <h3 class="article-title">Federalism vs. Centralization: Lessons for Bangladesh</h3>
+                                <p class="article-excerpt">Academic analysis on governance structures and their potential applications in Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Rahima Khatun</span>
+                                    <span>May 9, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Academia article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Philosophy</div>
+                                <h3 class="article-title">The Influence of Western Political Philosophy on South Asian Governance</h3>
+                                <p class="article-excerpt">How ideas from Western political thought have shaped governance models in Bangladesh and beyond.</p>
+                                <div class="article-meta">
+                                    <span>By Prof. Jamal Uddin</span>
+                                    <span>May 7, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Academia article image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Conference</div>
+                                <h3 class="article-title">Highlights from the 2025 South Asian Political Science Conference</h3>
+                                <p class="article-excerpt">Key takeaways from this year's major political science academic gathering in Dhaka.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Nashid Khan</span>
+                                    <span>May 4, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow prev" onclick="moveSlide(-1, 'academia-slides')">❮</div>
+            <div class="arrow next" onclick="moveSlide(1, 'academia-slides')">❯</div>
+        </div>
+    </div>
+
+    <!-- Book Review Section -->
+    <div class="section-title">
+        <h2>Book Review</h2>
+    </div>
+    <div class="articles-container">
+        <div class="slideshow">
+            <div class="slides" id="book-slides">
+                <div class="slide">
+                    <div class="article-grid">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Book review image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Political Biography</div>
+                                <h3 class="article-title">Review: "The Path to Democracy" by Sheikh Hasina</h3>
+                                <p class="article-excerpt">A critical analysis of the former Prime Minister's memoir and its historical significance.</p>
+                                <div class="article-meta">
+                                    <span>By Rezwana Islam</span>
+                                    <span>May 17, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Book review image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Academic Work</div>
+                                <h3 class="article-title">Review: "South Asian Politics in the 21st Century"</h3>
+                                <p class="article-excerpt">An examination of this comprehensive academic text on regional political dynamics.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Tasneem Ahmed</span>
+                                    <span>May 13, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Book review image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Historical</div>
+                                <h3 class="article-title">Review: "Bangladesh: The Birth of a Nation"</h3>
+                                <p class="article-excerpt">A look at this definitive account of Bangladesh's independence movement and early political years.</p>
+                                <div class="article-meta">
+                                    <span>By Ibrahim Ali</span>
+                                    <span>May 10, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="article-grid">
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Book review image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Global Politics</div>
+                                <h3 class="article-title">Review: "The New World Order and South Asia's Place"</h3>
+                                <p class="article-excerpt">Analysis of this forward-looking examination of global power dynamics affecting South Asia.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Anika Rahman</span>
+                                    <span>May 8, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Book review image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Theory</div>
+                                <h3 class="article-title">Review: "Democratic Theory in Practice: The Bangladesh Case"</h3>
+                                <p class="article-excerpt">Evaluation of this academic work examining democratic theory applications in Bangladesh.</p>
+                                <div class="article-meta">
+                                    <span>By Dr. Mohammed Hossain</span>
+                                    <span>May 6, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Book review image">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-category">Memoir</div>
+                                <h3 class="article-title">Review: "My Years in Parliament" by Kamal Ahmed</h3>
+                                <p class="article-excerpt">A review of this insider account of Bangladesh's parliamentary politics from a veteran politician.</p>
+                                <div class="article-meta">
+                                    <span>By Farhana Begum</span>
+                                    <span>May 3, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow prev" onclick="moveSlide(-1, 'book-slides')">❮</div>
+            <div class="arrow next" onclick="moveSlide(1, 'book-slides')">❯</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About PolitixPlume</h3>
+                <p class="about-text">Our goal is to foster a thriving political culture in Bangladesh while making meaningful contributions to the global field of political science academia. Founded in 2025, we strive to be a reliable source of political insight and analysis for readers interested in South Asian and global politics.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-details">
+                  <div>
+                        <span class="contact-icon">📍</span>
+                        <p>Dhaka,Bangladesh</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">📧</span>
+                        <p>politixplume@gmail.com</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">📞</span>
+                        <p>+880 1521739684 (whatsapp)</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">⏰</span>
+                        <p>Sunday to Friday: 9 AM - 8 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 PoliticsPlume. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

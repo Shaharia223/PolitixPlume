@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Guidelines | PolitixPlume</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Additional styles specific to guidelines page */
+        .guidelines-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .guidelines-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .guidelines-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .principle-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .principle-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .principle-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .structure-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+            margin: 40px 0;
+        }
+        
+        .chart-section {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        
+        .steps-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .step-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .step-item.active {
+            border-left-color: #1e3a8a;
+            background: #f8fafc;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+        }
+        
+        .step-description {
+            color: #6b7280;
+            display: none;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        
+        .step-item.active .step-description {
+            display: block;
+        }
+        
+        .citation-tabs {
+            display: flex;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 30px;
+        }
+        
+        .citation-tab {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .citation-tab.active {
+            color: #1e3a8a;
+            border-bottom-color: #1e3a8a;
+        }
+        
+        .citation-examples {
+            display: none;
+        }
+        
+        .citation-examples.active {
+            display: block;
+        }
+        
+        .citation-example {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .citation-type {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        .citation-text {
+            font-family: 'Courier New', monospace;
+            color: #374151;
+            line-height: 1.5;
+        }
+        
+        .creativity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .creativity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .creativity-card:hover {
+            background: #1e3a8a;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .creativity-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .ai-policy-section {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .accordion-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .accordion-header {
+            width: 100%;
+            padding: 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: #f8fafc;
+        }
+        
+        .accordion-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3b82f6;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+        
+        .accordion-content.active {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
+            margin: 60px 0;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .guidelines-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .structure-container {
+                flex-direction: column;
+            }
+            
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .creativity-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .citation-tabs {
+                flex-direction: column;
+            }
+            
+            .citation-tab {
+                text-align: center;
+                border-bottom: 1px solid #e5e7eb;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar Section -->
+    <div class="top-bar">
+        <div class="auth-section">
+            <a href="Submission.html" class="Art-submission">Article Submission</a>
+            <a href="submissionguideline.html" class="Art-submission-g">Submission Guideline</a>
+        </div>
+        <div class="social-donate">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61574224911717"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://x.com/plumePolitix"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+            <a href="#" class="donate-btn">Donate</a>
+            <a href="#" class="writer-btn">Writer</a>
+        </div>
+    </div>
+
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo">
+            <h1><a href='../home.html'>Politix<span>Plume</span></a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Bangladesh Politics</a></li>
+                <li><a href="#">Books Review</a></li>
+                <li><a href="#">Political Science Academia</a></li>
+                <li><a href="#">International Politics</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="guidelines-hero">
+        <div class="container">
+            <h1>Writing Guidelines for Contributors</h1>
+            <p>These guidelines are designed to foster your unique voice, critical thinking, and innovative perspectives while navigating the complexities of modern academic writing in the digital age.</p>
+        </div>
+    </div>
+
+    <!-- Core Principles Section -->
+    <div class="section-title">
+        <h2>The Human Element: Your Core Contribution</h2>
+    </div>
+    <div class="articles-container">
+        <p style="text-align: center; margin-bottom: 40px; color: #6b7280; font-size: 1.1rem;">In an age of automation, your intellect, perspective, and ethical judgment are more valuable than ever. These principles form the foundation of every article published on PolitixPlume.</p>
+        <div class="principles-grid" id="principles-grid">
+            <!-- Principles will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Article Structure Section -->
+    <div class="section-title">
+        <h2>Anatomy of a Compelling Article</h2>
+    </div>
+    <div class="articles-container">
+        <p style="text-align: center; margin-bottom: 40px; color: #6b7280; font-size: 1.1rem;">A strong structure is the backbone of a persuasive argument. This section breaks down the ideal format and flow for your 1500-word articles, ensuring clarity and impact.</p>
+        <div class="structure-container">
+            <div class="chart-section">
+                <div class="chart-container">
+                    <canvas id="wordCountChart"></canvas>
+                </div>
+                <p style="color: #6b7280; margin-top: 20px;">Approximate word count distribution. Hover over segments for details.</p>
+            </div>
+            <div class="steps-section" id="article-steps">
+                <!-- Article structure steps will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Citation Guide Section -->
+    <div class="section-title">
+        <h2>Citation & Referencing Guide</h2>
+    </div>
+    <div class="articles-container">
+        <p style="text-align: center; margin-bottom: 40px; color: #6b7280; font-size: 1.1rem;">Proper citation is the cornerstone of academic integrity. We adhere to the Chicago Manual of Style (Notes and Bibliography). This guide provides clear examples for your reference.</p>
+        <div class="citation-tabs">
+            <button class="citation-tab active" data-tab="footnotes">Footnotes</button>
+            <button class="citation-tab" data-tab="bibliography">Bibliography</button>
+        </div>
+        <div id="citations-content">
+            <!-- Citation examples will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Fostering Creativity Section -->
+    <div class="section-title">
+        <h2>Fostering Creativity and Innovation</h2>
+    </div>
+    <div class="articles-container">
+        <p style="text-align: center; margin-bottom: 40px; color: #6b7280; font-size: 1.1rem;">Great scholarship goes beyond summarizing facts; it involves pushing boundaries and forging new connections. Here are several approaches we encourage to make your work truly innovative.</p>
+        <div class="creativity-grid" id="creativity-grid">
+            <!-- Creativity cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- AI Usage Policy Section -->
+    <div class="section-title">
+        <h2>Responsible AI Usage Policy</h2>
+    </div>
+    <div class="articles-container">
+        <p style="text-align: center; margin-bottom: 40px; color: #6b7280; font-size: 1.1rem;">AI can be a powerful assistant, but not a replacement for scholarly work. Our policy ensures transparency and maintains the integrity of your contribution.</p>
+        <div class="ai-policy-section">
+            <div id="ai-policy-accordion">
+                <!-- AI policy accordion items will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About PolitixPlume</h3>
+                <p class="about-text">Our goal is to foster a thriving political culture in Bangladesh while making meaningful contributions to the global field of political science academia. Founded in 2025, we strive to be a reliable source of political insight and analysis for readers interested in South Asian and global politics.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-details">
+                    <div>
+                        <span class="contact-icon">📍</span>
+                        <p>Dhaka,Bangladesh</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">📧</span>
+                        <p>politixplume@gmail.com</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">📞</span>
+                        <p>+880 1521739684 (whatsapp)</p>
+                    </div>
+                    <div>
+                        <span class="contact-icon">⏰</span>
+                        <p>Sunday to Friday: 9 AM - 8 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 PoliticsPlume. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const principlesData = [
+                { title: "Originality is Key", icon: "💡", description: "Every article must present original thought, analysis, or synthesis. AI tools can assist, but the core arguments and insights must be your own." },
+                { title: "Depth of Analysis", icon: "🌊", description: "Go beyond surface-level descriptions. We expect critical engagement with theories and a nuanced understanding of complex political phenomena." },
+                { title: "Unique Voice & Perspective", icon: "✍️", description: "Develop your individual writing style. Your unique insights and interpretations are what make an article stand out from generic, AI-generated text." },
+                { title: "Ethical Considerations", icon: "⚖️", description: "Demonstrate a nuanced understanding of ethical implications and cultural specificities, especially when dealing with sensitive political issues." },
+                { title: "Responsibility & Accountability", icon: "🛡️", description: "As the author, you are fully responsible for the accuracy and integrity of your work. All information must be verifiable and arguments logically sound." },
+                { title: "Book Review Integrity", icon: "📚", description: "Offer a critical assessment of a book's arguments, methodology, and contribution, considering the author's style, accessibility, and overall impact." }
+            ];
+
+            const articleStructureData = [
+                { title: "Title & Abstract", description: "A concise, engaging title and a 150-200 word summary of your argument, findings, and conclusion." },
+                { title: "Introduction (200-250 words)", description: "Hook the reader, provide context, state your research question and thesis, and outline the article's structure." },
+                { title: "Literature Review (300-400 words)", description: "Critically engage with existing scholarship, identify gaps, and position your work within the academic debate." },
+                { title: "Main Body/Analysis (700-800 words)", description: "Develop your arguments logically, using concrete evidence, examples, and critical discussion. This is the core of your article." },
+                { title: "Conclusion (150-200 words)", description: "Restate your thesis, summarize key findings, and discuss the broader implications or avenues for future research." }
+            ];
+
+            const citationsData = {
+                footnotes: [
+                    { type: "Book (First Reference)", example: `1. John Mearsheimer, <em>The Tragedy of Great Power Politics</em> (New York: W. W. Norton & Company, 2001), 52.` },
+                    { type: "Book (Subsequent Reference)", example: `2. Mearsheimer, <em>Tragedy of Great Power Politics</em>, 68.` },
+                    { type: "Journal Article (First Reference)", example: `3. Amitav Acharya, "Constructing a Security Community in Southeast Asia," <em>International Organization</em> 57, no. 2 (2003): 289.` },
+                    { type: "Online Source (with Author)", example: `4. Sarah J. Miller, "Bangladesh's Garment Industry," <em>The Diplomat</em>, April 10, 2024, https://thediplomat.com/....` }
+                ],
+                bibliography: [
+                    { type: "Book", example: `Mearsheimer, John. <em>The Tragedy of Great Power Politics</em>. New York: W. W. Norton & Company, 2001.` },
+                    { type: "Journal Article", example: `Acharya, Amitav. "Constructing a Security Community in Southeast Asia: ASEAN and the Problem of Regional Order." <em>International Organization</em> 57, no. 2 (2003): 289-326.` },
+                    { type: "Online Source (with Author)", example: `Miller, Sarah J. "Bangladesh's Garment Industry: A Looming Crisis." <em>The Diplomat</em>, April 10, 2024. https://thediplomat.com/....` }
+                ]
+            };
+            
+            const creativityData = [
+                { title: "Interdisciplinary Approaches", icon: "🌐", description: "Draw insights from sociology, economics, or history to enrich your analysis." },
+                { title: "Challenge Conventional Wisdom", icon: "🤔", description: "Question widely accepted assumptions and offer fresh perspectives on familiar topics." },
+                { title: "Novel Case Studies", icon: "🇧🇩", description: "Explore less-examined cases, particularly within Bangladesh politics, to generate new insights." },
+                { title: "Comparative Analysis", icon: "📊", description: "Compare political systems or policies to highlight unique patterns and causal relationships." },
+                { title: "Problem-Oriented Research", icon: "🛠️", description: "Identify and analyze specific political problems, offering potential solutions or policy recommendations." },
+                { title: "Conceptual Innovation", icon: "💡", description: "Develop or refine theoretical concepts to better understand complex political phenomena." },
+                { title: "Engaging Prose", icon: "✒️", description: "Creativity is also in presentation. Write clearly, concisely, and engagingly to captivate your readers." },
+                { title: "Visual Elements", icon: "📈", description: "Use well-labeled figures, tables, or infographics judiciously to enhance understanding and engagement." }
+            ];
+            
+            const aiPolicyData = [
+                { title: "Declare Transparent Use", description: "If AI tools are used for brainstorming, grammar checks, or preliminary research, you must declare it clearly. Example: 'AI tools (e.g., ChatGPT) were used for brainstorming initial ideas and grammar checking.'" },
+                { title: "No AI-Generated Drafts", description: "Submitting articles predominantly generated by AI is strictly prohibited. The intellectual contribution, analysis, and argumentation must originate from you, the human author." },
+                { title: "Rigorous Fact-Checking Required", description: "You must rigorously fact-check all information, data, and citations, especially those suggested by AI tools. AI is prone to 'hallucinations' and can create false or misleading information." },
+                { title: "Plagiarism Rules Apply", description: "Using AI to generate content that replicates existing work without proper attribution constitutes plagiarism. All work must be original and correctly cited according to our guidelines." },
+                { title: "Editorial Review Process", description: "The editorial team reserves the right to assess the level of human authorship and originality in all submitted articles. Submissions may be subject to additional review if AI involvement is suspected." }
+            ];
+
+            // Populate Principles
+            const principlesGrid = document.getElementById('principles-grid');
+            principlesData.forEach(principle => {
+                const card = document.createElement('div');
+                card.className = 'principle-card';
+                card.innerHTML = `
+                    <span class="principle-icon">${principle.icon}</span>
+                    <h3>${principle.title}</h3>
+                    <p>${principle.description}</p>
+                `;
+                principlesGrid.appendChild(card);
+            });
+
+            // Populate Article Structure
+            const stepsContainer = document.getElementById('article-steps');
+            articleStructureData.forEach((step, index) => {
+                const stepElement = document.createElement('div');
+                stepElement.className = 'step-item';
+                if (index === 0) stepElement.classList.add('active');
+                stepElement.innerHTML = `
+                    <div class="step-title">${step.title}</div>
+                    <div class="step-description">${step.description}</div>
+                `;
+                
+                stepElement.addEventListener('click', () => {
+                    document.querySelectorAll('.step-item').forEach(item => item.classList.remove('active'));
+                    stepElement.classList.add('active');
+                });
+                
+                stepsContainer.appendChild(stepElement);
+            });
+
+            // Populate Citations
+            const citationsContent = document.getElementById('citations-content');
+            const citationTabs = document.querySelectorAll('.citation-tab');
+            
+            function renderCitations(tabType) {
+                const data = citationsData[tabType];
+                citationsContent.innerHTML = `
+                    <div class="citation-examples active">
+                        ${data.map(item => `
+                            <div class="citation-example">
+                                <div class="citation-type">${item.type}</div>
+                                <div class="citation-text">${item.example}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            citationTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    citationTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    renderCitations(tab.dataset.tab);
+                });
+            });
+            renderCitations('footnotes');
+
+            // Populate Creativity Grid
+            const creativityGrid = document.getElementById('creativity-grid');
+            creativityData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'creativity-card';
+                card.innerHTML = `
+                    <span class="creativity-icon">${item.icon}</span>
+                    <h4 style="margin-bottom: 10px; font-weight: 600;">${item.title}</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.4;">${item.description}</p>
+                `;
+                creativityGrid.appendChild(card);
+            });
+
+            // Populate AI Policy Accordion
+            const accordionContainer = document.getElementById('ai-policy-accordion');
+            aiPolicyData.forEach(policy => {
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <button class="accordion-header">
+                        <span>${policy.title}</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p style="color: #374151; line-height: 1.6;">${policy.description}</p>
+                    </div>
+                `;
+                accordionContainer.appendChild(item);
+            });
+            
+            // Accordion functionality
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('.accordion-icon');
+                    const isOpen = content.classList.contains('active');
+
+                    // Close all accordions
+                    document.querySelectorAll('.accordion-content').forEach(c => {
+                        c.classList.remove('active');
+                        c.style.maxHeight = '0px';
+                    });
+                    document.querySelectorAll('.accordion-icon').forEach(i => i.textContent = '+');
+
+                    // Open clicked accordion if it wasn't already open
+                    if (!isOpen) {
+                        content.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.textContent = '−';
+                    }
+                });
+            });
+
+            // Chart.js - Word Count Donut Chart
+            const ctx = document.getElementById('wordCountChart').getContext('2d');
+            const wordCountChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Introduction', 'Literature Review', 'Main Analysis', 'Conclusion', 'Abstract/Other'],
+                    datasets: [{
+                        label: 'Word Count',
+                        data: [250, 400, 750, 200, 100],
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#1e3a8a',
+                            '#60a5fa',
+                            '#1d4ed8',
+                            '#93c5fd'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + ' words';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
