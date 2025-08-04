@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Democratic Institutions in South Asia: A Comparative Study",
+    "excerpt": "An academic exploration of democratic structures across South Asian countries with a focus on Bangladesh.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Dr. Kamrul Islam",
+    "date": "2025-05-18",
+    "category": "Research",
+    "link": "articles/political-science-academia/article1.html"
+  },
+  {
+    "title": "Post-Colonial Political Theory: Applications in Modern Bangladesh",
+    "excerpt": "Examining how post-colonial theory can help understand contemporary political dynamics in Bangladesh.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Prof. Sabina Yasmin",
+    "date": "2025-05-14",
+    "category": "Theory",
+    "link": "articles/political-science-academia/article2.html"
+  },
+  {
+    "title": "Teaching Political Science in Bangladesh: Challenges and Opportunities",
+    "excerpt": "Insights into the state of political science education in Bangladeshi universities.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Dr. Abdul Mannan",
+    "date": "2025-05-11",
+    "category": "Education",
+    "link": "articles/political-science-academia/article3.html"
+  }
+] 

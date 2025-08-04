@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Review: 'The Path to Democracy' by Sheikh Hasina",
+    "excerpt": "A critical analysis of the former Prime Minister's memoir and its historical significance.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Rezwana Islam",
+    "date": "2025-05-17",
+    "category": "Political Biography",
+    "link": "articles/books-review/article1.html"
+  },
+  {
+    "title": "Review: 'South Asian Politics in the 21st Century'",
+    "excerpt": "An examination of this comprehensive academic text on regional political dynamics.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Dr. Tasneem Ahmed",
+    "date": "2025-05-13",
+    "category": "Academic Work",
+    "link": "articles/books-review/article2.html"
+  },
+  {
+    "title": "Review: 'Bangladesh: The Birth of a Nation'",
+    "excerpt": "A look at this definitive account of Bangladesh's independence movement and early political years.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Ibrahim Ali",
+    "date": "2025-05-10",
+    "category": "Historical",
+    "link": "articles/books-review/article3.html"
+  }
+] 

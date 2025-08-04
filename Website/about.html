@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - PolitixPlume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .about-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
+        }
+        
+        .about-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-hero p {
+            font-size: 20px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .mission, .vision {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mission h2, .vision h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .mission p, .vision p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .team-section {
+            margin-bottom: 60px;
+        }
+        
+        .team-section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        
+        .team-member h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .team-member .role {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .team-member p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .contact-item i {
+            font-size: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar Section -->
+    <div class="top-bar">
+        <div class="auth-section">
+            <a href="Submission/Submission.html" class="Art-submission">Article Submission</a>
+            <a href="Submission/submissionguideline.html" class="Art-submission-g">Submission Guideline</a>
+        </div>
+        <div class="social-donate">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61574224911717"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://x.com/plumePolitix"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+            <a href="#" class="donate-btn">Donate</a>
+            <a href="#" class="writer-btn">Writer</a>
+        </div>
+    </div>
+
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo">
+            <h1><a href='home.html'>Politix<span>Plume</span></a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="bangladesh-politics.html">Bangladesh Politics</a></li>
+                <li><a href="books-review.html">Books Review</a></li>
+                <li><a href="political-science-academia.html">Political Science Academia</a></li>
+                <li><a href="international-politics.html">International Politics</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="about-container">
+        <div class="about-hero">
+            <h1>About PolitixPlume</h1>
+            <p>Founded in 2025, PolitixPlume is a leading platform dedicated to fostering informed political discourse and academic excellence in political science. We bridge the gap between academic research and public understanding, making complex political concepts accessible to everyone.</p>
+        </div>
+
+        <div class="mission-vision">
+            <div class="mission">
+                <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <p>To provide a platform for rigorous political analysis, promote academic excellence in political science, and contribute to the development of informed political discourse in Bangladesh and beyond. We strive to make political science accessible while maintaining the highest standards of academic integrity.</p>
+            </div>
+            <div class="vision">
+                <h2><i class="fas fa-eye"></i> Our Vision</h2>
+                <p>To become the premier destination for political analysis and academic discourse in South Asia, fostering a community of scholars, practitioners, and engaged citizens who contribute to meaningful political dialogue and informed decision-making.</p>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="CV/profile-photo.jpg" alt="Founder" onerror="this.src='https://via.placeholder.com/120x120?text=Founder'">
+                    <h3>Shaharia Mahmud</h3>
+                    <div class="role">Founder & Editor-in-Chief</div>
+                    <p>Political science enthusiast with a passion for fostering informed political discourse and academic excellence.</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/120x120?text=Editor" alt="Editor">
+                    <h3>Editorial Team</h3>
+                    <div class="role">Content Editors</div>
+                    <p>Our dedicated team of editors ensures the highest quality of content and maintains academic standards across all publications.</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/120x120?text=Contributors" alt="Contributors">
+                    <h3>Contributors</h3>
+                    <div class="role">Academic Contributors</div>
+                    <p>We work with scholars, researchers, and political analysts from around the world to bring diverse perspectives and insights.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>We welcome collaboration, contributions, and feedback from our community. Reach out to us for any inquiries or to discuss potential partnerships.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>politixplume@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+880 1521739684</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Dhaka, Bangladesh</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Sunday to Friday: 9 AM - 8 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html> 

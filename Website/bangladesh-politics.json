@@ -1,0 +1,29 @@
+[
+  {
+    "title": "The Changing Landscape of Bangladesh's Political System",
+    "excerpt": "An analysis of the recent shifts in Bangladesh's political climate and its implications for the future governance.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Ahmed Rahman",
+    "date": "2025-05-15",
+    "category": "Current Affairs",
+    "link": "articles/bangladesh-politics/article1.html"
+  },
+  {
+    "title": "Economic Policies and Their Political Implications",
+    "excerpt": "How recent economic decisions by the government are shaping the political discourse in Bangladesh.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Nusrat Jahan",
+    "date": "2025-05-12",
+    "category": "Analysis",
+    "link": "articles/bangladesh-politics/article2.html"
+  },
+  {
+    "title": "The Role of Youth in Shaping Bangladesh's Political Future",
+    "excerpt": "Exploring how the younger generation is becoming more involved in political activism and decision-making.",
+    "image": "https://via.placeholder.com/600x400",
+    "author": "Rahul Khan",
+    "date": "2025-05-10",
+    "category": "Opinion",
+    "link": "articles/bangladesh-politics/article3.html"
+  }
+] 
