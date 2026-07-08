@@ -7,19 +7,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.15/hls.min.js"></script>
 <style>
   :root{
-    --bg: #0a0e14;
-    --panel: #10161f;
-    --panel-2: #141b26;
-    --line: #223047;
-    --text: #e7edf5;
-    --muted: #7d8ba0;
-    --amber: #f2a340;
-    --amber-dim: #7a5a2c;
-    --live: #ff5a5a;
-    --focus: #6cc6ff;
-    --font-display: 'Sora', 'Segoe UI', sans-serif;
-    --font-body: 'Inter', 'Segoe UI', sans-serif;
-    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+    --bg: #08070b;
+    --panel: #16121a;
+    --panel-2: #22192a;
+    --line: #46374a;
+    --text: #f7f0e8;
+    --muted: #bcb1c4;
+    --amber: #f7c95f;
+    --amber-dim: #b88933;
+    --live: #ff5d6c;
+    --focus: #7fd7ff;
+    --font-display: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    --font-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    --font-mono: 'Consolas', 'JetBrains Mono', monospace;
   }
   @font-face{
     font-family:'Sora'; src: local('Sora');
@@ -27,13 +27,40 @@
   * { box-sizing: border-box; }
   html,body{ height:100%; }
   body{
+    position:relative;
     margin:0;
-    background: radial-gradient(circle at 15% 0%, #101826 0%, var(--bg) 55%);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(247,201,95,.12) 0 14%, transparent 32%),
+      radial-gradient(circle at 88% 14%, rgba(255,93,108,.12) 0 12%, transparent 28%),
+      linear-gradient(135deg, #120d17 0%, var(--bg) 56%, #0f0c13 100%);
     color: var(--text);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   a{ color:inherit; }
+
+  .wallpaper-layer,
+  .wallpaper-glow{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+  .wallpaper-layer{
+    z-index: 0;
+    background: center center / cover no-repeat var(--wallpaper-image, none);
+    filter: saturate(1.05) contrast(1.08) brightness(.78);
+    transform: scale(1.03);
+    transition: background-image .4s ease, opacity .4s ease;
+  }
+  .wallpaper-glow{
+    z-index: 1;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(247,201,95,.12), transparent 28%),
+      radial-gradient(circle at 80% 20%, rgba(255,93,108,.14), transparent 26%),
+      linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.58));
+  }
+  header, .layout, .wallpaper-dock, .player-overlay{ position:relative; z-index: 10; }
 
   /* ---------- Scanline signature texture ---------- */
   .scan-veil{
@@ -49,13 +76,111 @@
     opacity: .5;
   }
 
+  .wallpaper-dock{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 25;
+    width: min(320px, calc(100vw - 36px));
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    background: rgba(16, 11, 18, .82);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 0 rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+  .wallpaper-dock-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(247,201,95,.16);
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  }
+  .wallpaper-dock-head strong{
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .wallpaper-dock-head span{
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .wallpaper-dock-body{
+    padding: 12px 14px 14px;
+    display:grid;
+    gap:10px;
+  }
+  .wallpaper-actions{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:8px;
+  }
+  .wallpaper-card{
+    position:relative;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    overflow:hidden;
+    min-height: 74px;
+    padding: 10px;
+    text-align:left;
+    background: #19131f;
+    box-shadow: 0 4px 0 rgba(0,0,0,.18);
+  }
+  .wallpaper-card .thumb{
+    position:absolute;
+    inset:0;
+    background-size: cover;
+    background-position: center;
+    filter: saturate(1.08) brightness(.72);
+    opacity: .9;
+  }
+  .wallpaper-card .label{
+    position:relative;
+    z-index:1;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.12);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .wallpaper-upload-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .wallpaper-upload-row button{
+    flex:1;
+    min-width: 0;
+  }
+  .drop-state{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  body.drop-target-active .wallpaper-dock{
+    border-color: var(--amber);
+    box-shadow: 0 0 0 2px rgba(255,217,77,.16), 0 12px 0 rgba(0,0,0,.18);
+  }
+
   /* ---------- Top bar ---------- */
   header{
     position: sticky; top:0; z-index: 20;
     display:flex; align-items:center; gap:18px;
     padding: 16px 22px;
-    background: linear-gradient(180deg, rgba(10,14,20,.97), rgba(10,14,20,.86));
-    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(28,14,24,.98), rgba(10,10,14,.94));
+    border-bottom: 2px solid rgba(247,201,95,.20);
+    box-shadow: 0 8px 0 rgba(0,0,0,.18);
     backdrop-filter: blur(10px);
   }
   .brand{
@@ -65,11 +190,13 @@
     font-size: 19px;
     letter-spacing: 0.02em;
     white-space:nowrap;
+    text-transform: uppercase;
+    text-shadow: 0 2px 0 rgba(0,0,0,.7);
   }
   .brand .dot{
     width:10px; height:10px; border-radius:50%;
     background: var(--live);
-    box-shadow: 0 0 0 3px rgba(255,90,90,.15), 0 0 10px rgba(255,90,90,.6);
+    box-shadow: 0 0 0 3px rgba(255,93,108,.18), 0 0 12px rgba(255,93,108,.7);
     animation: pulse 2.2s ease-in-out infinite;
     flex-shrink:0;
   }
@@ -78,8 +205,8 @@
     50%{ opacity:.45; transform: scale(.82); }
   }
   .brand small{
-    display:block; font-family: var(--font-mono); font-weight:400;
-    font-size:10px; letter-spacing:.14em; color: var(--muted); text-transform:uppercase;
+    display:block; font-family: var(--font-mono); font-weight:700;
+    font-size:10px; letter-spacing:.18em; color: var(--muted); text-transform:uppercase;
   }
 
   .source-form{
@@ -87,11 +214,11 @@
   }
   .source-form input[type=text]{
     flex:1; min-width:0;
-    background: var(--panel);
-    border:1px solid var(--line);
+    background: rgba(16,12,19,.95);
+    border:2px solid var(--line);
     color: var(--text);
     padding: 10px 14px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-family: var(--font-mono);
     font-size: 13px;
     outline:none;
@@ -104,38 +231,48 @@
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 13px;
-    border-radius: 8px;
-    border: 1px solid var(--line);
+    border-radius: 10px;
+    border: 2px solid var(--line);
     background: var(--panel-2);
     color: var(--text);
     padding: 10px 16px;
     cursor:pointer;
-    transition: border-color .15s, background .15s, transform .05s;
+    transition: border-color .15s, background .15s, transform .05s, box-shadow .15s;
     white-space:nowrap;
+    box-shadow: 0 4px 0 rgba(0,0,0,.18);
   }
-  button:hover{ border-color: var(--amber-dim); background:#1a2230; }
-  button:active{ transform: scale(.97); }
+  button:hover{ border-color: var(--amber); background:#291e36; transform: translateY(-1px); }
+  button:active{ transform: translateY(1px); box-shadow: 0 2px 0 rgba(0,0,0,.18); }
   button.primary{
     background: var(--amber);
     border-color: var(--amber);
     color:#1a1204;
   }
-  button.primary:hover{ background:#ffb95c; }
+  button.primary:hover{ background:#ffe26f; }
   button:focus-visible, input:focus-visible, .tile:focus-visible, .chip:focus-visible{
     outline: 2px solid var(--focus); outline-offset:2px;
   }
 
   .paste-toggle{
-    background:none; border:1px solid var(--line); color:var(--muted); padding:10px 12px;
+    background: linear-gradient(180deg, #241726, #17111a);
+    border: 2px solid var(--line);
+    color:var(--muted);
+    padding:10px 12px;
+  }
+  .reload-toggle{
+    background: linear-gradient(180deg, #35243a, #1b121f);
+    border-color: rgba(247,201,95,.35);
+    color: var(--amber);
   }
 
   /* ---------- Layout ---------- */
   .layout{ display:flex; min-height: calc(100vh - 68px); }
   aside{
     width: 220px; flex-shrink:0;
-    border-right: 1px solid var(--line);
+    border-right: 2px solid rgba(247,201,95,.18);
     padding: 18px 12px;
     position: sticky; top:68px; height: calc(100vh - 68px); overflow-y:auto;
+    background: linear-gradient(180deg, rgba(20,14,24,.4), rgba(10,10,10,.14));
   }
   aside h4{
     font-family: var(--font-mono); text-transform:uppercase; letter-spacing:.12em;
@@ -145,11 +282,11 @@
     display:flex; justify-content:space-between; align-items:center;
     width:100%; text-align:left;
     background:none; border:none; color: var(--text);
-    padding: 9px 10px; border-radius:7px; font-size:13px; font-weight:500;
+    padding: 9px 10px; border-radius:9px; font-size:13px; font-weight:700;
     cursor:pointer; margin-bottom: 2px;
   }
   .chip:hover{ background: var(--panel-2); }
-  .chip.active{ background: rgba(242,163,64,.13); color: var(--amber); }
+  .chip.active{ background: rgba(247,201,95,.13); color: var(--amber); box-shadow: inset 0 0 0 1px rgba(247,201,95,.22); }
   .chip span.count{
     font-family: var(--font-mono); font-size:11px; color: var(--muted);
   }
@@ -172,6 +309,174 @@
   .search-wrap svg{ position:absolute; left:10px; top:50%; transform:translateY(-50%); opacity:.5; }
   .meta-count{
     font-family: var(--font-mono); font-size:12px; color: var(--muted); white-space:nowrap;
+  }
+
+  .saved-panel{
+    margin-top: 18px;
+    border: 2px solid rgba(247,201,95,.18);
+    background: linear-gradient(180deg, rgba(35,24,40,.84), rgba(18,13,19,.86));
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 0 rgba(0,0,0,.18);
+  }
+  .saved-panel-head{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding: 14px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border: 0;
+    border-bottom: 2px solid rgba(255,217,77,.15);
+    color: var(--text);
+    text-align:left;
+    box-shadow: none;
+  }
+  .saved-panel-head:hover{
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    transform:none;
+  }
+  .saved-panel-title-wrap{
+    display:flex; flex-direction:column; gap:2px;
+    min-width:0;
+  }
+  .saved-panel-title{
+    margin:0;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 0 rgba(0,0,0,.45);
+  }
+  .saved-panel-subtitle{
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+  }
+  .saved-panel-badge{
+    display:flex; align-items:center; gap:8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    flex-shrink:0;
+  }
+  .saved-panel-chevron{
+    width: 10px; height: 10px;
+    border-right: 2px solid var(--amber);
+    border-bottom: 2px solid var(--amber);
+    transform: rotate(45deg);
+    transition: transform .25s ease;
+  }
+  .saved-panel.open .saved-panel-chevron{
+    transform: rotate(225deg);
+  }
+  .saved-panel-body{
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height .35s ease, opacity .22s ease, transform .35s ease;
+  }
+  .saved-panel.open .saved-panel-body{
+    max-height: 1200px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .saved-panel-head .hint{
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .saved-list{ display:flex; flex-direction:column; gap:8px; padding: 12px 12px 0; }
+  .saved-folder{
+    display:block;
+    width:100%;
+    border: 2px solid rgba(247,201,95,.16);
+    background: linear-gradient(180deg, #261b2e, #171219);
+    border-radius: 14px;
+    padding: 12px;
+    color: var(--text);
+    text-align:left;
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 6px 0 rgba(0,0,0,.18);
+  }
+  .saved-folder::before{
+    content:'';
+    position:absolute; inset:0 auto auto 0;
+    width: 48px; height: 16px;
+    background: linear-gradient(180deg, #f8d976, #ddb247);
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.22);
+  }
+  .saved-folder-top{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    margin-top: 8px;
+  }
+  .folder-icon{
+    width: 30px; height: 22px; flex-shrink:0;
+    border: 2px solid #2d220d;
+    border-radius: 4px 6px 6px 6px;
+    background: linear-gradient(180deg, #f8d976, #ddb247);
+    position:relative;
+    box-shadow: 0 2px 0 rgba(0,0,0,.2);
+  }
+  .folder-icon::before{
+    content:'';
+    position:absolute; left:3px; top:-6px;
+    width:14px; height:8px;
+    border: 2px solid #2d220d;
+    border-bottom:none;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(180deg, #fff0b7, #f0d06e);
+  }
+  .saved-folder-text{
+    min-width:0;
+  }
+  .saved-folder-title{
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 4px;
+  }
+  .saved-folder-meta{
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .saved-folder-actions{
+    display:flex;
+    gap:8px;
+    margin-top: 10px;
+    flex-wrap:wrap;
+  }
+  .saved-empty{
+    padding: 0 12px 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .saved-folder button{
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .danger-btn{
+    border-color: rgba(255,90,90,.35);
+    color: #ffb1b1;
+  }
+  .danger-btn:hover{
+    border-color: rgba(255,90,90,.7);
+    background: rgba(255,90,90,.12);
+  }
+  .saved-folder.active{
+    border-color: var(--amber);
+    box-shadow: 0 6px 0 rgba(0,0,0,.18), 0 0 0 2px rgba(247,201,95,.12) inset;
+    transform: translateY(-1px);
   }
 
   /* ---------- Empty state ---------- */
@@ -198,8 +503,8 @@
   }
   .tile{
     background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
+    border: 2px solid var(--line);
+    border-radius: 14px;
     padding: 14px;
     cursor:pointer;
     text-align:left;
@@ -207,11 +512,12 @@
     transition: border-color .15s, transform .1s, background .15s;
     position:relative;
     overflow:hidden;
+    box-shadow: 0 8px 0 rgba(0,0,0,.18);
   }
-  .tile:hover{ border-color: var(--amber-dim); transform: translateY(-2px); background: var(--panel-2); }
+  .tile:hover{ border-color: var(--amber); transform: translateY(-2px); background: var(--panel-2); }
   .tile .logo-wrap{
     width:100%; aspect-ratio: 16/10; border-radius:7px;
-    background: #0d1420;
+    background: #12101a;
     display:flex; align-items:center; justify-content:center;
     overflow:hidden; border:1px solid var(--line);
   }
@@ -221,7 +527,7 @@
   }
   .tile .name{
     font-size: 13.5px; font-weight:600; line-height:1.3;
-    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+    display:-webkit-box; line-clamp:2; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
   }
   .tile .row{ display:flex; align-items:center; justify-content:space-between; gap:6px; }
   .tile .group-tag{
@@ -236,7 +542,7 @@
 
   /* ---------- Player overlay ---------- */
   .player-overlay{
-    position: fixed; inset:0; background: rgba(4,6,10,.92);
+    position: fixed; inset:0; background: rgba(6,5,10,.92);
     z-index: 100; display:flex; align-items:center; justify-content:center;
     padding: 24px; backdrop-filter: blur(6px);
   }
@@ -268,9 +574,11 @@
   ::-webkit-scrollbar-track{ background: transparent; }
 
   @media (max-width: 760px){
-    aside{ display:none; }
+    .layout{ flex-direction:column; }
+    aside{ width:100%; position:relative; top:auto; height:auto; border-right:none; border-bottom: 2px solid var(--line); }
     header{ flex-wrap:wrap; }
     .source-form{ order:3; width:100%; }
+    .saved-panel{ margin-top: 14px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -281,7 +589,35 @@
 </head>
 <body>
 
+<div class="wallpaper-layer" id="wallpaperLayer"></div>
+<div class="wallpaper-glow"></div>
 <div class="scan-veil"></div>
+
+<div class="wallpaper-dock" id="wallpaperDock">
+  <div class="wallpaper-dock-head">
+    <strong>Wallpaper</strong>
+    <span>drag an image here</span>
+  </div>
+  <div class="wallpaper-dock-body">
+    <div class="wallpaper-actions">
+      <button type="button" class="wallpaper-card" id="wallpaperTojiBtn">
+        <span class="thumb" style="background-image:url('toji-fushiguro.png')"></span>
+        <span class="label">Toji mode</span>
+      </button>
+      <button type="button" class="wallpaper-card" id="wallpaperPainBtn">
+        <span class="thumb" style="background-image:url('pain-nagato.jpg')"></span>
+        <span class="label">Pain mode</span>
+      </button>
+    </div>
+    <div class="wallpaper-upload-row">
+      <button type="button" class="paste-toggle" id="wallpaperUploadBtn">Upload image</button>
+      <button type="button" class="paste-toggle" id="wallpaperClearBtn">Clear wallpaper</button>
+    </div>
+    <div class="drop-state" id="wallpaperDropState">Use the built-in wallpaper or drop any image file onto the page.</div>
+  </div>
+</div>
+
+<input type="file" id="wallpaperFileInput" accept="image/*" hidden />
 
 <header>
   <div class="brand">
@@ -295,6 +631,8 @@
   <form class="source-form" id="sourceForm">
     <input type="text" id="sourceInput" placeholder="Paste an M3U/M3U8 URL, or click Paste List to drop raw playlist text…" />
     <button type="button" class="paste-toggle" id="pasteToggle">Paste list</button>
+    <button type="button" class="paste-toggle" id="savePlaylistBtn" disabled>Save playlist</button>
+    <button type="button" class="paste-toggle reload-toggle" id="reloadBtn" title="Refresh this page">Pager</button>
     <button type="submit" class="primary" id="loadBtn">Load</button>
   </form>
 </header>
@@ -303,6 +641,23 @@
   <aside id="sidebar" hidden>
     <h4>Groups</h4>
     <div id="groupList"></div>
+
+    <div class="saved-panel">
+      <button type="button" class="saved-panel-head" id="savedPanelToggle" aria-expanded="true">
+        <div class="saved-panel-title-wrap">
+          <h4 class="saved-panel-title">Saved Playlists</h4>
+          <span class="saved-panel-subtitle">tap the drawer to fold or open it</span>
+        </div>
+        <div class="saved-panel-badge">
+          <span id="savedCount">0</span>
+          <span class="saved-panel-chevron" aria-hidden="true"></span>
+        </div>
+      </button>
+      <div class="saved-panel-body" id="savedPanelBody">
+        <div id="savedList" class="saved-list"></div>
+        <div id="savedEmpty" class="saved-empty">Load a playlist, then save it here for quick reuse.</div>
+      </div>
+    </div>
   </aside>
 
   <main>
@@ -355,16 +710,36 @@
     activeGroup: "All",
     query: "",
     hls: null,
+    currentPlaylist: null,
+    savedPlaylists: [],
+    activeSavedPlaylistId: null,
+    savedPanelOpen: true,
+    wallpaper: null,
   };
 
   const el = {
     sourceForm: document.getElementById('sourceForm'),
     sourceInput: document.getElementById('sourceInput'),
     pasteToggle: document.getElementById('pasteToggle'),
+    savePlaylistBtn: document.getElementById('savePlaylistBtn'),
+    reloadBtn: document.getElementById('reloadBtn'),
+    wallpaperLayer: document.getElementById('wallpaperLayer'),
+    wallpaperDock: document.getElementById('wallpaperDock'),
+    wallpaperTojiBtn: document.getElementById('wallpaperTojiBtn'),
+    wallpaperPainBtn: document.getElementById('wallpaperPainBtn'),
+    wallpaperUploadBtn: document.getElementById('wallpaperUploadBtn'),
+    wallpaperClearBtn: document.getElementById('wallpaperClearBtn'),
+    wallpaperFileInput: document.getElementById('wallpaperFileInput'),
+    wallpaperDropState: document.getElementById('wallpaperDropState'),
     pasteArea: document.getElementById('pasteArea'),
     loadBtn: document.getElementById('loadBtn'),
     sidebar: document.getElementById('sidebar'),
     groupList: document.getElementById('groupList'),
+    savedList: document.getElementById('savedList'),
+    savedEmpty: document.getElementById('savedEmpty'),
+    savedCount: document.getElementById('savedCount'),
+    savedPanelToggle: document.getElementById('savedPanelToggle'),
+    savedPanel: document.querySelector('.saved-panel'),
     toolbar: document.getElementById('toolbar'),
     searchInput: document.getElementById('searchInput'),
     metaCount: document.getElementById('metaCount'),
@@ -379,6 +754,85 @@
   };
 
   let pasteMode = false;
+
+  const wallpaperPresets = {
+    toji: { label: 'Toji mode', src: 'toji-fushiguro.png' },
+    pain: { label: 'Pain mode', src: 'pain-nagato.jpg' },
+  };
+
+  function setWallpaper(src, label) {
+    if (!src) {
+      state.wallpaper = null;
+      el.wallpaperLayer.style.backgroundImage = 'none';
+      el.wallpaperDropState.textContent = 'Wallpaper cleared. Drop an image to bring it back.';
+      try { localStorage.removeItem('signal:wallpaper'); } catch (e) { /* ignore */ }
+      return;
+    }
+
+    state.wallpaper = { src, label: label || 'Wallpaper' };
+    el.wallpaperLayer.style.backgroundImage = `url("${src}")`;
+    el.wallpaperDropState.textContent = `${label || 'Wallpaper'} is active. Drop another image to replace it.`;
+    try {
+      localStorage.setItem('signal:wallpaper', JSON.stringify(state.wallpaper));
+    } catch (e) { /* ignore storage limits */ }
+  }
+
+  function restoreWallpaper() {
+    try {
+      const raw = localStorage.getItem('signal:wallpaper');
+      if (!raw) {
+        setWallpaper(wallpaperPresets.toji.src, wallpaperPresets.toji.label);
+        return;
+      }
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.src) {
+        setWallpaper(parsed.src, parsed.label);
+      } else {
+        setWallpaper(wallpaperPresets.toji.src, wallpaperPresets.toji.label);
+      }
+    } catch (e) {
+      setWallpaper(wallpaperPresets.toji.src, wallpaperPresets.toji.label);
+    }
+  }
+
+  function handleWallpaperFiles(files) {
+    const file = Array.from(files || []).find(candidate => candidate && candidate.type && candidate.type.startsWith('image/'));
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setWallpaper(String(reader.result || ''), file.name.replace(/\.[^.]+$/, ''));
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function updateDropState(active) {
+    document.body.classList.toggle('drop-target-active', active);
+    if (active) {
+      el.wallpaperDropState.textContent = 'Drop the image now to use it as the wallpaper.';
+    } else if (!state.wallpaper) {
+      el.wallpaperDropState.textContent = 'Use the built-in wallpaper or drop any image file onto the page.';
+    }
+  }
+
+  el.wallpaperTojiBtn.addEventListener('click', () => setWallpaper(wallpaperPresets.toji.src, wallpaperPresets.toji.label));
+  el.wallpaperPainBtn.addEventListener('click', () => setWallpaper(wallpaperPresets.pain.src, wallpaperPresets.pain.label));
+  el.wallpaperUploadBtn.addEventListener('click', () => el.wallpaperFileInput.click());
+  el.wallpaperClearBtn.addEventListener('click', () => setWallpaper(null));
+  el.wallpaperFileInput.addEventListener('change', () => handleWallpaperFiles(el.wallpaperFileInput.files));
+
+  window.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    updateDropState(true);
+  });
+  window.addEventListener('dragleave', (event) => {
+    if (event.clientX === 0 && event.clientY === 0) updateDropState(false);
+  });
+  window.addEventListener('drop', (event) => {
+    event.preventDefault();
+    updateDropState(false);
+    handleWallpaperFiles(event.dataTransfer && event.dataTransfer.files);
+  });
 
   el.pasteToggle.addEventListener('click', () => {
     pasteMode = !pasteMode;
@@ -466,6 +920,73 @@
       });
       el.groupList.appendChild(btn);
     });
+    renderSavedPlaylists();
+    syncSavedPanelState();
+  }
+
+  function syncSidebarVisibility() {
+    el.sidebar.hidden = state.channels.length === 0 && state.savedPlaylists.length === 0;
+    el.toolbar.hidden = state.channels.length === 0;
+  }
+
+  function syncSavedPanelState() {
+    if (!el.savedPanel || !el.savedPanelToggle) return;
+    const shouldOpen = state.savedPlaylists.length > 0 ? state.savedPanelOpen : true;
+    el.savedPanel.classList.toggle('open', shouldOpen);
+    el.savedPanelToggle.setAttribute('aria-expanded', String(shouldOpen));
+    const subtitle = el.savedPanelToggle.querySelector('.saved-panel-subtitle');
+    if (subtitle) {
+      subtitle.textContent = shouldOpen
+        ? 'tap the drawer to fold it away'
+        : 'tap the drawer to open your folders';
+    }
+  }
+
+  function renderSavedPlaylists() {
+    el.savedList.innerHTML = '';
+    el.savedCount.textContent = `${state.savedPlaylists.length}`;
+    el.savedEmpty.hidden = state.savedPlaylists.length > 0;
+
+    if (state.savedPlaylists.length === 0) return;
+
+    const frag = document.createDocumentFragment();
+    const items = state.savedPlaylists.slice().sort((a, b) => b.createdAt - a.createdAt);
+    items.forEach(item => {
+      const box = document.createElement('div');
+      box.className = 'saved-folder' + (state.activeSavedPlaylistId === item.id ? ' active' : '');
+      box.setAttribute('role', 'button');
+      box.setAttribute('tabindex', '0');
+      box.setAttribute('aria-label', `Open saved playlist ${item.name}`);
+      box.innerHTML = `
+        <div class="saved-folder-top">
+          <div class="folder-icon" aria-hidden="true"></div>
+          <div class="saved-folder-text">
+            <div class="saved-folder-title">${escapeHtml(item.name)}</div>
+            <div class="saved-folder-meta">${item.channelCount} channels · click to open</div>
+          </div>
+        </div>
+        <div class="saved-folder-actions">
+          <button type="button" class="danger-btn">Delete</button>
+        </div>
+      `;
+      box.addEventListener('click', (event) => {
+        if (event.target.closest('button')) return;
+        loadSavedPlaylist(item.id);
+      });
+      box.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          loadSavedPlaylist(item.id);
+        }
+      });
+      box.querySelector('button').addEventListener('click', (event) => {
+        event.stopPropagation();
+        deleteSavedPlaylist(item.id);
+      });
+      frag.appendChild(box);
+    });
+    el.savedList.appendChild(frag);
+    syncSavedPanelState();
   }
 
   function currentFiltered() {
@@ -595,7 +1116,7 @@
     }
   }
 
-  function applyPlaylist(text) {
+  function applyPlaylist(text, options = {}) {
     const channels = parseM3U(text);
     if (channels.length === 0) {
       alert('No channels were found in that playlist. Double check the format.');
@@ -606,19 +1127,95 @@
     state.activeGroup = 'All';
     state.query = '';
     el.searchInput.value = '';
+    state.currentPlaylist = {
+      text,
+      source: inferPlaylistSource(text),
+      name: inferPlaylistName(text),
+      channelCount: channels.length,
+    };
+    state.activeSavedPlaylistId = options.savedPlaylistId || null;
+    el.savePlaylistBtn.disabled = false;
 
     el.emptyState.style.display = 'none';
-    el.sidebar.hidden = false;
-    el.toolbar.hidden = false;
+    syncSidebarVisibility();
 
     renderSidebar();
     renderGrid();
+  }
+
+  function inferPlaylistSource(text) {
+    const firstLine = String(text).split(/\r?\n/).find(line => line.trim());
+    if (!firstLine) return 'playlist';
+    if (/^#EXTM3U/i.test(firstLine)) return 'M3U file';
+    return 'playlist';
+  }
+
+  function inferPlaylistName(text) {
+    return inferPlaylistSource(text) === 'M3U file' ? 'Imported M3U' : 'Imported playlist';
+  }
+
+  function loadSavedPlaylist(id) {
+    const item = state.savedPlaylists.find(p => p.id === id);
+    if (!item) return;
+    state.savedPanelOpen = true;
+    applyPlaylist(item.text, { savedPlaylistId: id });
+  }
+
+  function deleteSavedPlaylist(id) {
+    const item = state.savedPlaylists.find(p => p.id === id);
+    if (!item) return;
+    if (!confirm(`Delete saved playlist "${item.name}"?`)) return;
+    state.savedPlaylists = state.savedPlaylists.filter(p => p.id !== id);
+    if (state.activeSavedPlaylistId === id) {
+      state.activeSavedPlaylistId = null;
+    }
+    persistSavedPlaylists();
+    renderSavedPlaylists();
+  }
+
+  async function saveCurrentPlaylist() {
+    if (!state.currentPlaylist) return;
+    const defaultName = state.currentPlaylist.name || 'Imported playlist';
+    const name = prompt('Name this playlist:', defaultName);
+    if (name === null) return;
+    const trimmed = name.trim();
+    if (!trimmed) return;
+
+    const existingIndex = state.savedPlaylists.findIndex(item => item.name.toLowerCase() === trimmed.toLowerCase());
+    const record = {
+      id: existingIndex >= 0 ? state.savedPlaylists[existingIndex].id : `playlist-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      name: trimmed,
+      source: state.currentPlaylist.source,
+      text: state.currentPlaylist.text,
+      createdAt: existingIndex >= 0 ? state.savedPlaylists[existingIndex].createdAt : Date.now(),
+      channelCount: state.currentPlaylist.channelCount,
+    };
+
+    if (existingIndex >= 0) {
+      state.savedPlaylists[existingIndex] = record;
+    } else {
+      state.savedPlaylists.push(record);
+    }
+    state.activeSavedPlaylistId = record.id;
+    state.savedPanelOpen = true;
+    persistSavedPlaylists();
+    renderSavedPlaylists();
   }
 
   function setLoading(isLoading) {
     el.loadBtn.disabled = isLoading;
     el.loadBtn.textContent = isLoading ? 'Loading…' : 'Load';
   }
+
+  el.savedPanelToggle.addEventListener('click', () => {
+    state.savedPanelOpen = !state.savedPanelOpen;
+    syncSavedPanelState();
+  });
+
+  el.savePlaylistBtn.addEventListener('click', saveCurrentPlaylist);
+  el.reloadBtn.addEventListener('click', () => {
+    location.reload();
+  });
 
   el.sourceForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -642,15 +1239,14 @@
   // ---------- Persistence (personal, this browser only) ----------
   async function saveLastSource(payload) {
     try {
-      if (window.storage) await window.storage.set('signal:last-source', JSON.stringify(payload), false);
+      localStorage.setItem('signal:last-source', JSON.stringify(payload));
     } catch (e) { /* storage optional */ }
   }
   async function restoreLastSource() {
     try {
-      if (!window.storage) return;
-      const result = await window.storage.get('signal:last-source', false);
-      if (!result) return;
-      const payload = JSON.parse(result.value);
+      const raw = localStorage.getItem('signal:last-source');
+      if (!raw) return;
+      const payload = JSON.parse(raw);
       if (payload.type === 'url') {
         el.sourceInput.value = payload.value;
       } else if (payload.type === 'raw') {
@@ -660,6 +1256,29 @@
       }
     } catch (e) { /* no previous session */ }
   }
+
+  function persistSavedPlaylists() {
+    try {
+      localStorage.setItem('signal:saved-playlists', JSON.stringify(state.savedPlaylists));
+    } catch (e) { /* storage may be unavailable */ }
+  }
+
+  function restoreSavedPlaylists() {
+    try {
+      const raw = localStorage.getItem('signal:saved-playlists');
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        state.savedPlaylists = parsed.filter(item => item && typeof item.text === 'string' && typeof item.name === 'string');
+        state.savedPanelOpen = state.savedPlaylists.length > 0;
+      }
+    } catch (e) { /* ignore corrupt storage */ }
+  }
+
+  restoreSavedPlaylists();
+  restoreWallpaper();
+  syncSidebarVisibility();
+  renderSavedPlaylists();
   restoreLastSource();
 
 })();
